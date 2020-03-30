@@ -15,7 +15,8 @@ namespace Comparer.ListApp.ImageListViewHelpers
         {
             this.form = form;
             this.listView1 = listView1;
-            listView1.AllowDrop = true;
+            //listView1.AllowDrop = true;
+            listView1.AllowDrag = true;
             listView1.QueryContinueDrag += ListView1_QueryContinueDrag;
             listView1.DragEnter += ListView1_DragEnter;
             listView1.DragLeave += ListView1_DragLeave;
