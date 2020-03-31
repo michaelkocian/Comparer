@@ -13,29 +13,31 @@ namespace Comparer.FullscreenImage
         ImageFile ExifInfo;
         System.DateTime formLoaded;
 
-
+        Color transparencyKey = Color.FromArgb(255, 255, 255, 255);
 
 
         public Form1(string path = @"D:\zaloha telefonu\Camera\20170903_222301.jpg")
         {
             InitializeComponent();
-            this.Text = path; //title
-
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            this.BackColor = Color.Transparent;
-            this.TransparencyKey = BackColor;
+            this.Text = path; //title
+            this.BackColor = transparencyKey;
+            this.TransparencyKey = transparencyKey;
 
             ExifInfo = ImageFile.FromFile(path);
 
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
 
-            imageBox = new MyImageBox();
-
-            imageBox.Width = this.Width;
-            imageBox.Height = this.Height;
-            imageBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-
+            imageBox = new MyImageBox
+            {
+                Width = this.Width,
+                Height = this.Height,
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
+                ForeColor = transparencyKey,
+                GridColor = transparencyKey,
+                GridColorAlternate = transparencyKey,
+            };
 
             var orientation = ExifInfo.Properties.Get<ExifEnumProperty<ExifLibrary.Orientation>>(ExifTag.Orientation);
 
@@ -65,35 +67,37 @@ namespace Comparer.FullscreenImage
                     break;
             }
 
-            imageBox.Margin = new Padding(0);
-            this.Padding = new Padding(0);
-            // imageBox.BackColor = Color.Transparent;
-            imageBox.ForeColor = Color.Transparent;
-            imageBox.GridColor = Color.Transparent;
-            imageBox.GridColorAlternate = Color.Transparent;
 
-
-            image = Bitmap.FromFile(path);
+            var bitmap = new Bitmap(path);
+            bitmap.ChangeColor(255, 255, 255, 254, 255, 255);
+            image = bitmap;
             image.RotateFlip(type);
             imageBox.Image = image;
 
-            b = new Button();
-            b.Width = 30;
-            b.Height = 30;
-            b.BackColor = Color.Black;
-            b.ForeColor = Color.FromArgb(255, 125, 0, 0);
-            b.Text = "X";
-            b.FlatStyle = FlatStyle.Flat;
+            b = new Button
+            {
+                Width = 30,
+                Height = 30,
+                BackColor = Color.Black,
+                ForeColor = Color.FromArgb(255, 125, 0, 0),
+                Text = "X",
+                FlatStyle = FlatStyle.Flat
+            };
             this.Controls.Add(b);
             this.Controls.Add(imageBox);
 
 
 
             this.Load += Form1_Load;
-            //imageBox.Click += ImageBox_Click;
             b.Click += ImageBox_Click;
             imageBox.BorderStyle = BorderStyle.None;
 
+            this.Deactivate += Form1_Deactivate;
+        }
+
+        private void Form1_Deactivate(object sender, System.EventArgs e)
+        {
+            this.Close();
         }
 
         private void ImageBox_Click(object sender, System.EventArgs e)
@@ -101,7 +105,6 @@ namespace Comparer.FullscreenImage
             if (System.DateTime.UtcNow - formLoaded > System.TimeSpan.FromMilliseconds(500))
                 this.Close();
         }
-
 
 
         private void Form1_Load(object sender, System.EventArgs e)
@@ -112,23 +115,30 @@ namespace Comparer.FullscreenImage
             b.Location = new Point(this.Width - 35, 5);
         }
 
-
-
-        private const int WM_ACTIVATEAPP = 0x1C;
-        protected override void WndProc(ref Message m)
+        protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            if (m.Msg == WM_ACTIVATEAPP)
-            {
-                if (m.WParam == System.IntPtr.Zero)
-                {
-                    BeginInvoke(new System.Action(() => { Text = "Deactivated"; }));
-                    this.Close(); //closes this window on focus lost;
-                }
-                else
-                    BeginInvoke(new System.Action(() => { Text = "Activated"; }));
-            }
-            base.WndProc(ref m);
+            image.Dispose();
         }
+
+
+
+        //
+        //    //CLOSE ON CLICK OUTSIDE
+        //    private const int WM_ACTIVATEAPP = 0x1C;
+        //    protected override void WndProc(ref Message m)
+        //    {
+        //        if (m.Msg == WM_ACTIVATEAPP)
+        //        {
+        //            if (m.WParam == System.IntPtr.Zero)
+        //            {
+        //                BeginInvoke(new System.Action(() => { Text = "Deactivated"; }));
+        //                this.Close(); //closes this window on focus lost;
+        //            }
+        //            else
+        //                BeginInvoke(new System.Action(() => { Text = "Activated"; }));
+        //        }
+        //        base.WndProc(ref m);
+        //    }
 
 
     }

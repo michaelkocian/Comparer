@@ -6,12 +6,12 @@ namespace Comparer.FullscreenImage
 {
     public class MyImageBox : ImageBox
     {
-
-
         protected override void OnPaintBackground(PaintEventArgs pevent)
         {
-            pevent.Graphics.FillRectangle(Brushes.Transparent, pevent.ClipRectangle);
+            //  pevent.Graphics.FillRectangle(Brushes.Red, pevent.ClipRectangle);
         }
+
+ 
 
     }
 }

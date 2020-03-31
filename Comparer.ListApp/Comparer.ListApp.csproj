@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Comparer.Core\Comparer.Core.csproj" />
+    <ProjectReference Include="..\Comparer.FullscreenImage\Comparer.FullscreenImage.csproj" />
   </ItemGroup>
 
 </Project>

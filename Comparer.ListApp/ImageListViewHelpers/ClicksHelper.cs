@@ -61,7 +61,8 @@ namespace Comparer.ListApp.ImageListViewHelpers
             ImageListViewItem selectedITem = (sender as ImageListView).SelectedItems[0];
             string path = selectedITem?.FileName;
             if (path.EndsWith(".jpg"))
-                new FullscreenImg(path, selectedITem).Show();
+                new Comparer.FullscreenImage.Form1(path).Show();
+            //new FullscreenImg(path, selectedITem).Show();
             else
                 OpenWithDefaultProgram(path);
 
