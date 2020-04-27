@@ -7,7 +7,7 @@ namespace Comparer.FullscreenImage
 {
     public partial class Form1 : Form
     {
-        Button b;
+        Button r, c;
         Image image;
         ImageBox imageBox;
         ImageFile ExifInfo;
@@ -74,25 +74,47 @@ namespace Comparer.FullscreenImage
             image.RotateFlip(type);
             imageBox.Image = image;
 
-            b = new Button
+            c = new Button
             {
                 Width = 30,
                 Height = 30,
                 BackColor = Color.Black,
                 ForeColor = Color.FromArgb(255, 125, 0, 0),
-                Text = "X",
+                Text = "✖",
                 FlatStyle = FlatStyle.Flat
             };
-            this.Controls.Add(b);
+
+            r = new Button
+            {
+                Width = 30,
+                Height = 30,
+                BackColor = Color.Black,
+                ForeColor = Color.FromArgb(255, 125, 0, 0),
+                Text = "↶",
+                FlatStyle = FlatStyle.Popup,
+            };
+
+            new ToolTip().SetToolTip(r, "Rotate");
+            new ToolTip().SetToolTip(c, "Close");
+
+            this.Controls.Add(c);
+            this.Controls.Add(r);
             this.Controls.Add(imageBox);
 
 
 
             this.Load += Form1_Load;
-            b.Click += ImageBox_Click;
+            c.Click += C_Click;
+            r.Click += R_Click;
             imageBox.BorderStyle = BorderStyle.None;
 
             this.Deactivate += Form1_Deactivate;
+        }
+
+        private void R_Click(object sender, System.EventArgs e)
+        {
+            imageBox.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            imageBox.Invalidate();
         }
 
         private void Form1_Deactivate(object sender, System.EventArgs e)
@@ -100,7 +122,7 @@ namespace Comparer.FullscreenImage
             this.Close();
         }
 
-        private void ImageBox_Click(object sender, System.EventArgs e)
+        private void C_Click(object sender, System.EventArgs e)
         {
             if (System.DateTime.UtcNow - formLoaded > System.TimeSpan.FromMilliseconds(500))
                 this.Close();
@@ -112,7 +134,8 @@ namespace Comparer.FullscreenImage
             int zoomfactor = (this.Height /* - 40*/) * 100 / image.Height;
             imageBox.Zoom = zoomfactor;
             formLoaded = System.DateTime.UtcNow;
-            b.Location = new Point(this.Width - 35, 5);
+            c.Location = new Point(this.Width - 35, 5);
+            r.Location = new Point(this.Width - 70, 5);
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
