@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comparer.ListApp", "Compare
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comparer.FullscreenImage", "Comparer.FullscreenImage\Comparer.FullscreenImage.csproj", "{53B65AE8-4032-4B23-B0BC-687CA3BA782B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comparer.InteractiveImage", "Comparer.InteractiveImage\Comparer.InteractiveImage.csproj", "{C07513AE-E710-4AD2-80CA-DCC3C146A78A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comparer.InteractiveImage", "Comparer.InteractiveImage\Comparer.InteractiveImage.csproj", "{C07513AE-E710-4AD2-80CA-DCC3C146A78A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{F7253FD1-0FC1-44AE-A89E-50253120E4B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,14 @@ Global
 		{C07513AE-E710-4AD2-80CA-DCC3C146A78A}.Release without WPF|Any CPU.Build.0 = Release|Any CPU
 		{C07513AE-E710-4AD2-80CA-DCC3C146A78A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C07513AE-E710-4AD2-80CA-DCC3C146A78A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7253FD1-0FC1-44AE-A89E-50253120E4B5}.Debug without WPF|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7253FD1-0FC1-44AE-A89E-50253120E4B5}.Debug without WPF|Any CPU.Build.0 = Debug|Any CPU
+		{F7253FD1-0FC1-44AE-A89E-50253120E4B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7253FD1-0FC1-44AE-A89E-50253120E4B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7253FD1-0FC1-44AE-A89E-50253120E4B5}.Release without WPF|Any CPU.ActiveCfg = Release|Any CPU
+		{F7253FD1-0FC1-44AE-A89E-50253120E4B5}.Release without WPF|Any CPU.Build.0 = Release|Any CPU
+		{F7253FD1-0FC1-44AE-A89E-50253120E4B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7253FD1-0FC1-44AE-A89E-50253120E4B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

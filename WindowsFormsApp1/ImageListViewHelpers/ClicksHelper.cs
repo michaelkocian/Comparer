@@ -1,4 +1,4 @@
-﻿using Comparer.ListApp.Forms;
+﻿using Comparer2.ListApp.Forms;
 using Manina.Windows.Forms;
 using System;
 using System.Diagnostics;
@@ -6,7 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace Comparer.ListApp.ImageListViewHelpers
+namespace Comparer2.ListApp.ImageListViewHelpers
 {
     public class ClicksHelper
     {
@@ -24,7 +24,7 @@ namespace Comparer.ListApp.ImageListViewHelpers
             this.imageListView.ThumbnailSize = new Size(size, size * 9 / 16);
         }
 
-        private void ImageListView_ItemClick(object sender, ItemClickEventArgs e)
+        private void ImageListView_ItemClick(object s, ItemClickEventArgs e)
         {
             if (e.Buttons == MouseButtons.Right)
             {
@@ -50,7 +50,7 @@ namespace Comparer.ListApp.ImageListViewHelpers
                 }
 
 
-                menu.Show(sender as Control, e.Location);
+                menu.Show(s as Control, e.Location);
             }
         }
 
@@ -61,8 +61,8 @@ namespace Comparer.ListApp.ImageListViewHelpers
             ImageListViewItem selectedITem = (sender as ImageListView).SelectedItems[0];
             string path = selectedITem?.FileName;
             // if (path.EndsWith(".jpg"))
-            //     new Comparer.FullscreenImage.Form1(path).Show();
-            // //new FullscreenImg(path, selectedITem).Show();
+            //     //new Comparer2.FullscreenImage.Form1(path).Show();
+            //     new FullscreenImg(path, selectedITem).Show();
             // else
             OpenWithDefaultProgram(path);
 
